@@ -77,7 +77,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     @PostConstruct
     public void showFrame() {
-        setPreferredSize(new Dimension(500, 500));
+        setPreferredSize(new Dimension(750, 550));
         initComponents();
         java.awt.EventQueue.invokeLater(new Runnable() {
 

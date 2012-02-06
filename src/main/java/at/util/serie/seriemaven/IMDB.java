@@ -7,13 +7,14 @@ package at.util.serie.seriemaven;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.springframework.stereotype.Component;
+import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -31,40 +32,33 @@ public class IMDB {
     private final String CONFIG = "series.conf";
     private String id;
     private String rating;
-    private List<Serie> series = null;
-    private List<Serie> configSeries = null;
-    private List<File> files;
-    private List<File> remove;
-    int counter = 0;
+    private List<Serie> series;
+    private List<Serie> configSeries;
     private Pattern pattern = Pattern.compile("S[0-9]+E[0-9]+", Pattern.CASE_INSENSITIVE);
 
     public IMDB() {
     }
 
-    public IMDB(List<File> files) {
-        this.files = files;
+    @PostConstruct
+    public void init() {
         series = new ArrayList<Serie>();
-        remove = new ArrayList<File>();
         configSeries = readSeriesFromConfig();
     }
 
-    public List<Serie> getSeries() {
-        Serie serie = null;
+    public List<Serie> getSeries(List<File> files) {
+        Serie sserie = null;
         for (File file : files) {
-            if ((serie = getSerieFromFile(file, true)) != null) {
-                series.add(serie);
-                remove.add(file);
-                counter++;
+            sserie = getSerieFromFile(file, true);
+            if (sserie != null) {
+                series.add(new Serie(sserie));
             }
         }
-
-        files.removeAll(remove);
         return series;
     }
 
     public Serie getSerieFromFile(File file, boolean flag) {
 
-        serie = null;
+        serie = new Serie();
 
         if (flag == false) {
             name = file.getParentFile().getName().replaceAll("[.]", " ");
@@ -284,7 +278,25 @@ public class IMDB {
     /*
      * Getter for Files which are no Series
      */
-    public List<File> getOtherFiles() {
-        return files;
+    public List<Category> listSeriesInCategories(List<Serie> series) {
+        List<Category> categories = new ArrayList<Category>();
+        Category category = null;
+
+        for (Serie serie : series) {
+            category = new Category();
+            category.setSerien(new ArrayList<Serie>());          
+            for (Serie sub : series) {
+                if (serie.getTitle().toLowerCase().contentEquals(sub.getTitle().toLowerCase()) && !sub.hasCategory()) {
+                    sub.setHasCategory(true);
+                    category.getSerien().add(sub);
+                }
+            }
+            if (category.getSerien().size() > 0) {
+                category.setName(serie.getTitle());
+                categories.add(category);
+            }
+        }
+
+        return categories;
     }
 }

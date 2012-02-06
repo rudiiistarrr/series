@@ -10,11 +10,13 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Rudolf Kubicz <r.kubicz@chello.at>
  */
+@Repository
 public class DirectoryUtil {
 
     List<File> fileList;
@@ -66,7 +68,7 @@ public class DirectoryUtil {
             List<File> files = Arrays.asList(filearray);
             for (File f : files) {
                 fileList.add(f);
-                System.out.println(f.getAbsolutePath());
+                //System.out.println(f.getAbsolutePath());
             }
         }
     }

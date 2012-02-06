@@ -18,6 +18,9 @@ public class MainPanel extends javax.swing.JPanel {
 
     @Resource
     AddSeriesPanel addSeriesPanel;
+    
+    @Resource
+    OverviewPanel overviewPanel;
 
     /**
      * Creates new form MainPanel
@@ -28,8 +31,9 @@ public class MainPanel extends javax.swing.JPanel {
     @PostConstruct
     public void init() {
         initComponents();
-        add(new JPanel(), "TEST");
+        add(overviewPanel, "Overview");
         add(addSeriesPanel, "Config");
+        
     }
 
     /**

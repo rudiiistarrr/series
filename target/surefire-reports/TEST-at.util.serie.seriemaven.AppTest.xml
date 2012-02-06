@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.071" errors="0" skipped="0" tests="1" name="at.util.serie.seriemaven.AppTest">
+<testsuite failures="0" time="0.067" errors="0" skipped="0" tests="1" name="at.util.serie.seriemaven.AppTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.6.0_24\jre\bin"/>
@@ -19,7 +19,7 @@
     <property name="basedir" value="C:\Users\RUDI\Documents\NetBeansProjects\serie-maven"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.6.0_24\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="surefire.real.class.path" value="C:\Users\RUDI\Documents\NetBeansProjects\serie-maven\target\surefire\surefirebooter2784896431106928662.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\RUDI\Documents\NetBeansProjects\serie-maven\target\surefire\surefirebooter6591067926657882044.jar"/>
     <property name="java.io.tmpdir" value="C:\Users\RUDI\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
@@ -59,5 +59,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.002" classname="at.util.serie.seriemaven.AppTest" name="testApp"/>
+  <testcase time="0.003" classname="at.util.serie.seriemaven.AppTest" name="testApp"/>
 </testsuite>

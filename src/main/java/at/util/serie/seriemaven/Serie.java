@@ -5,13 +5,12 @@
 package at.util.serie.seriemaven;
 
 import java.io.File;
-import java.io.Serializable;
 
 /**
  *
  * @author Rudolf Kubicz <r.kubicz@chello.at>
  */
-public class Serie implements Serializable {
+public class Serie{
 
     private File file;
     private String id;
@@ -21,6 +20,7 @@ public class Serie implements Serializable {
     private String episode;
     private String rating;
     private boolean imbd_flag;
+    private boolean hasCategory = false;
 
     public Serie() {
     }
@@ -30,6 +30,18 @@ public class Serie implements Serializable {
         this.title = title;
         this.rating = rating;
         this.imbd_flag = flag;
+    }
+    
+    public Serie(Serie sub) {
+        this.id = sub.getId();
+        this.title = sub.getTitle();
+        this.season = sub.getSeason();
+        this.episode = sub.getEpisode();
+        this.file = sub.getFile();
+        this.hasCategory = sub.hasCategory();
+        this.path = sub.getPath();
+        this.rating = sub.getRating();
+        this.imbd_flag = sub.isImbd_flag();
     }
 
     public String getEpisode() {
@@ -85,7 +97,7 @@ public class Serie implements Serializable {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title.substring(0, 1).toUpperCase() + title.substring(1);
     }
 
     public boolean isImbd_flag() {
@@ -95,4 +107,13 @@ public class Serie implements Serializable {
     public void setImbd_flag(boolean imbd_flag) {
         this.imbd_flag = imbd_flag;
     }
+
+    public boolean hasCategory() {
+        return hasCategory;
+    }
+
+    public void setHasCategory(boolean hasCategory) {
+        this.hasCategory = hasCategory;
+    }
+
 }
